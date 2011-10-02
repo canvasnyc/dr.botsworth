@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002144431) do
+ActiveRecord::Schema.define(:version => 20111002160030) do
 
   create_table "checkups", :force => true do |t|
-    t.boolean  "healthy"
+    t.boolean  "healthy",             :default => false
     t.float    "name_lookup_time"
     t.float    "start_transfer_time"
     t.float    "total_time"
