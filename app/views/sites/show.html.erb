@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @site.name %>
+</p>
+
+<p>
+  <b>Timeout:</b>
+  <%= @site.timeout %>
+</p>
+
+<p>
+  <b>Retries:</b>
+  <%= @site.retries %>
+</p>
+
+<p>
+  <b>Between retries wait:</b>
+  <%= @site.between_retries_wait %>
+</p>
+
+<p>
+  <b>Ip relay commands:</b>
+  <%= @site.ip_relay_commands %>
+</p>
+
+
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>
