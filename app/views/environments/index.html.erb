@@ -14,14 +14,13 @@
   <tr>
     <td><%= environment.name %></td>
     <td><%= environment.url %></td>
-    <td><%= environment.site %></td>
-    <td><%= link_to 'Show', environment %></td>
-    <td><%= link_to 'Edit', edit_environment_path(environment) %></td>
-    <td><%= link_to 'Destroy', environment, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', site_environment_path(@site, environment) %></td>
+    <td><%= link_to 'Edit', edit_site_environment_path(@site, environment) %></td>
+    <td><%= link_to 'Destroy', site_environment_path(@site, environment), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Environment', new_environment_path %>
+<%= link_to 'New Environment', new_site_environment_path %>

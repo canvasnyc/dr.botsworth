@@ -17,19 +17,19 @@
   </div>
   <div class="field">
     <%= f.label :timeout %><br />
-    <%= f.number_field :timeout %>
+    <%= f.number_field :timeout, :placeholder => Settings.default!.timeout %>
   </div>
   <div class="field">
     <%= f.label :retries %><br />
-    <%= f.number_field :retries %>
+    <%= f.number_field :retries, :placeholder => Settings.default!.retries %>
   </div>
   <div class="field">
     <%= f.label :between_retries_wait %><br />
-    <%= f.number_field :between_retries_wait %>
+    <%= f.number_field :between_retries_wait, :placeholder => Settings.default!.between_retries_wait %>
   </div>
   <div class="field">
     <%= f.label :ip_relay_commands %><br />
-    <%= f.text_field :ip_relay_commands %>
+    <%= f.text_field :ip_relay_commands, :placeholder => Settings.default!.ip_relay_commands %>
   </div>
   <div class="actions">
     <%= f.submit %>

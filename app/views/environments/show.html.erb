@@ -10,11 +10,6 @@
   <%= @environment.url %>
 </p>
 
-<p>
-  <b>Site:</b>
-  <%= @environment.site %>
-</p>
 
-
-<%= link_to 'Edit', edit_environment_path(@environment) %> |
-<%= link_to 'Back', environments_path %>
+<%= link_to 'Edit', edit_site_environment_path(@site, @environment) %> |
+<%= link_to 'Back', site_environments_path %>

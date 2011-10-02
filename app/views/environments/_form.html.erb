@@ -1,4 +1,4 @@
-<%= form_for(@environment) do |f| %>
+<%= form_for([@site, @environment]) do |f| %>
   <% if @environment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@environment.errors.count, "error") %> prohibited this environment from being saved:</h2>
@@ -18,10 +18,6 @@
   <div class="field">
     <%= f.label :url %><br />
     <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :site %><br />
-    <%= f.text_field :site %>
   </div>
   <div class="actions">
     <%= f.submit %>

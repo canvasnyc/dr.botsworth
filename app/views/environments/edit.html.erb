@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @environment %> |
-<%= link_to 'Back', environments_path %>
+<%= link_to 'Show', site_environment_path(@site, @environment) %> |
+<%= link_to 'Back', site_environments_path %>

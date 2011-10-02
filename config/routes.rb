@@ -1,7 +1,8 @@
 DrBotsworth::Application.routes.draw do
-  resources :environments
 
-  resources :sites
+  resources :sites do
+    resources :environments
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

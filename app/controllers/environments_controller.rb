@@ -2,7 +2,8 @@ class EnvironmentsController < ApplicationController
   # GET /environments
   # GET /environments.json
   def index
-    @environments = Environment.all
+    @site = Site.find(params[:site_id])
+    @environments = Environment.where(:site_id => params[:site_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +14,7 @@ class EnvironmentsController < ApplicationController
   # GET /environments/1
   # GET /environments/1.json
   def show
+    @site = Site.find(params[:site_id])
     @environment = Environment.find(params[:id])
 
     respond_to do |format|
@@ -24,7 +26,8 @@ class EnvironmentsController < ApplicationController
   # GET /environments/new
   # GET /environments/new.json
   def new
-    @environment = Environment.new
+    @site = Site.find(params[:site_id])
+    @environment = @site.environments.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +37,19 @@ class EnvironmentsController < ApplicationController
 
   # GET /environments/1/edit
   def edit
+    @site = Site.find(params[:site_id])
     @environment = Environment.find(params[:id])
   end
 
   # POST /environments
   # POST /environments.json
   def create
-    @environment = Environment.new(params[:environment])
+    @site = Site.find(params[:site_id])
+    @environment = @site.environments.new(params[:environment])
 
     respond_to do |format|
       if @environment.save
-        format.html { redirect_to @environment, :notice => 'Environment was successfully created.' }
+        format.html { redirect_to site_environment_path(@site, @environment), :notice => 'Environment was successfully created.' }
         format.json { render :json => @environment, :status => :created, :location => @environment }
       else
         format.html { render :action => "new" }
@@ -56,11 +61,12 @@ class EnvironmentsController < ApplicationController
   # PUT /environments/1
   # PUT /environments/1.json
   def update
+    @site = Site.find(params[:site_id])
     @environment = Environment.find(params[:id])
 
     respond_to do |format|
       if @environment.update_attributes(params[:environment])
-        format.html { redirect_to @environment, :notice => 'Environment was successfully updated.' }
+        format.html { redirect_to site_environment_path(@site, @environment), :notice => 'Environment was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
@@ -72,11 +78,12 @@ class EnvironmentsController < ApplicationController
   # DELETE /environments/1
   # DELETE /environments/1.json
   def destroy
+
     @environment = Environment.find(params[:id])
     @environment.destroy
 
     respond_to do |format|
-      format.html { redirect_to environments_url }
+      format.html { redirect_to site_environments_path }
       format.json { head :ok }
     end
   end
