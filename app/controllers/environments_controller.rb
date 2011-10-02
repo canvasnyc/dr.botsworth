@@ -1,6 +1,6 @@
 class EnvironmentsController < ApplicationController
-  # GET /environments
-  # GET /environments.json
+  # GET /sites/1/environments
+  # GET /sites/1/environments.json
   def index
     @site = Site.find(params[:site_id])
     @environments = Environment.where(:site_id => params[:site_id])
@@ -11,8 +11,8 @@ class EnvironmentsController < ApplicationController
     end
   end
 
-  # GET /environments/1
-  # GET /environments/1.json
+  # GET /sites/1/environments/1
+  # GET /sites/1/environments/1.json
   def show
     @site = Site.find(params[:site_id])
     @environment = Environment.find(params[:id])
@@ -23,8 +23,8 @@ class EnvironmentsController < ApplicationController
     end
   end
 
-  # GET /environments/new
-  # GET /environments/new.json
+  # GET /sites/1/environments/new
+  # GET /sites/1/environments/new.json
   def new
     @site = Site.find(params[:site_id])
     @environment = @site.environments.new
@@ -35,14 +35,14 @@ class EnvironmentsController < ApplicationController
     end
   end
 
-  # GET /environments/1/edit
+  # GET /sites/1/environments/1/edit
   def edit
     @site = Site.find(params[:site_id])
     @environment = Environment.find(params[:id])
   end
 
-  # POST /environments
-  # POST /environments.json
+  # POST /sites/1/environments
+  # POST /sites/1/environments.json
   def create
     @site = Site.find(params[:site_id])
     @environment = @site.environments.new(params[:environment])
@@ -58,8 +58,8 @@ class EnvironmentsController < ApplicationController
     end
   end
 
-  # PUT /environments/1
-  # PUT /environments/1.json
+  # PUT /sites/1/environments/1
+  # PUT /sites/1/environments/1.json
   def update
     @site = Site.find(params[:site_id])
     @environment = Environment.find(params[:id])
@@ -75,8 +75,8 @@ class EnvironmentsController < ApplicationController
     end
   end
 
-  # DELETE /environments/1
-  # DELETE /environments/1.json
+  # DELETE /sites/1/environments/1
+  # DELETE /sites/1/environments/1.json
   def destroy
 
     @environment = Environment.find(params[:id])
