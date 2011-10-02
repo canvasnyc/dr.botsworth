@@ -1,0 +1,33 @@
+development:
+  ip_relay:
+    url: http://ip-relay.foo.com
+    basic_auth: true
+    username: bar
+    password: swordfish
+  default:
+    timeout: 15
+    retries: 2
+    between_retries_wait: 2
+    ip_relay_commands: '[chat: shenanigans] [email: foo@bar.com]'
+test:
+  ip_relay:
+    url: http://ip-relay.foo.com
+    basic_auth: true
+    username: bar
+    password: swordfish
+  default:
+    timeout: 15
+    retries: 2
+    between_retries_wait: 2
+    ip_relay_commands: '[chat: shenanigans] [email: foo@bar.com]'
+production:
+  ip_relay:
+    url: http://ip-relay.foo.com
+    basic_auth: true
+    username: bar
+    password: swordfish
+  default:
+    timeout: 15
+    retries: 2
+    between_retries_wait: 2
+    ip_relay_commands: '[chat: shenanigans] [email: foo@bar.com]'
