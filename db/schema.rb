@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002160030) do
+ActiveRecord::Schema.define(:version => 20111002162100) do
 
   create_table "checkups", :force => true do |t|
     t.boolean  "healthy",             :default => false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20111002160030) do
     t.float    "total_time"
     t.integer  "downloaded_bytes"
     t.integer  "retries_used"
+    t.string   "error"
     t.integer  "environment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
