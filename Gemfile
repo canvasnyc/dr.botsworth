@@ -34,3 +34,4 @@ gem 'therubyracer'
 
 gem 'hashie'
 gem 'whenever'
+gem 'curb'
