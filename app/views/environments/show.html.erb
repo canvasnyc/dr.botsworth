@@ -10,6 +10,26 @@
   <%= @environment.url %>
 </p>
 
+<p>
+  <b>Timeout:</b>
+  <%= @environment.timeout %>
+</p>
+
+<p>
+  <b>Retries:</b>
+  <%= @environment.retries %>
+</p>
+
+<p>
+  <b>Between retries wait:</b>
+  <%= @environment.between_retries_wait %>
+</p>
+
+<p>
+  <b>Ip relay commands:</b>
+  <%= @environment.ip_relay_commands %>
+</p>
+
 
 <%= link_to 'Edit', edit_site_environment_path(@site, @environment) %> |
 <%= link_to 'Back', site_environments_path %>

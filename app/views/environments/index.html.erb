@@ -4,7 +4,10 @@
   <tr>
     <th>Name</th>
     <th>Url</th>
-    <th>Site</th>
+    <th>Timeout</th>
+    <th>Retries</th>
+    <th>Between retries wait</th>
+    <th>Ip relay commands</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,6 +17,10 @@
   <tr>
     <td><%= environment.name %></td>
     <td><%= environment.url %></td>
+    <td><%= environment.timeout %></td>
+    <td><%= environment.retries %></td>
+    <td><%= environment.between_retries_wait %></td>
+    <td><%= environment.ip_relay_commands %></td>
     <td><%= link_to 'Show', site_environment_path(@site, environment) %></td>
     <td><%= link_to 'Edit', edit_site_environment_path(@site, environment) %></td>
     <td><%= link_to 'Destroy', site_environment_path(@site, environment), :confirm => 'Are you sure?', :method => :delete %></td>
