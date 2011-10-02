@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002131630) do
+ActiveRecord::Schema.define(:version => 20111002144431) do
 
   create_table "checkups", :force => true do |t|
     t.boolean  "healthy"
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(:version => 20111002131630) do
   create_table "environments", :force => true do |t|
     t.string   "name"
     t.string   "url"
+    t.integer  "timeout"
+    t.integer  "retries"
+    t.integer  "between_retries_wait"
+    t.string   "ip_relay_commands"
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,10 +42,6 @@ ActiveRecord::Schema.define(:version => 20111002131630) do
 
   create_table "sites", :force => true do |t|
     t.string   "name"
-    t.integer  "timeout"
-    t.integer  "retries"
-    t.integer  "between_retries_wait"
-    t.string   "ip_relay_commands"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
