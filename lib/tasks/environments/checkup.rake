@@ -14,7 +14,7 @@ namespace :environments do
         checkup.environment = environment
         checkup.perform
 
-        puts "#{checkup.healthy} #{"(#{checkup.error})" if checkup.error.present?}"
+        puts "#{checkup.healthy} #{"(#{checkup.error})" unless checkup.healthy?}"
 
         unless checkup.healthy?
           ip_relay.alert({
