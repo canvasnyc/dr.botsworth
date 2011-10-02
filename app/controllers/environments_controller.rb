@@ -3,7 +3,7 @@ class EnvironmentsController < ApplicationController
   # GET /sites/1/environments.json
   def index
     @site = Site.find(params[:site_id])
-    @environments = Environment.where(:site_id => params[:site_id])
+    @environments = @site.environments.where(:site_id => params[:site_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class EnvironmentsController < ApplicationController
   # GET /sites/1/environments/1.json
   def show
     @site = Site.find(params[:site_id])
-    @environment = Environment.find(params[:id])
+    @environment = @site.environments.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,7 +38,7 @@ class EnvironmentsController < ApplicationController
   # GET /sites/1/environments/1/edit
   def edit
     @site = Site.find(params[:site_id])
-    @environment = Environment.find(params[:id])
+    @environment = @site.environments.find(params[:id])
   end
 
   # POST /sites/1/environments
@@ -62,7 +62,7 @@ class EnvironmentsController < ApplicationController
   # PUT /sites/1/environments/1.json
   def update
     @site = Site.find(params[:site_id])
-    @environment = Environment.find(params[:id])
+    @environment = @site.environments.find(params[:id])
 
     respond_to do |format|
       if @environment.update_attributes(params[:environment])
@@ -79,7 +79,7 @@ class EnvironmentsController < ApplicationController
   # DELETE /sites/1/environments/1.json
   def destroy
 
-    @environment = Environment.find(params[:id])
+    @environment = @site.environments.find(params[:id])
     @environment.destroy
 
     respond_to do |format|
