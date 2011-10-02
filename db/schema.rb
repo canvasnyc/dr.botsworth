@@ -10,7 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002023105) do
+ActiveRecord::Schema.define(:version => 20111002131630) do
+
+  create_table "checkups", :force => true do |t|
+    t.boolean  "healthy"
+    t.float    "name_lookup_time"
+    t.float    "start_transfer_time"
+    t.float    "total_time"
+    t.integer  "downloaded_bytes"
+    t.integer  "retries_used"
+    t.integer  "environment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checkups", ["environment_id"], :name => "index_checkups_on_environment_id"
 
   create_table "environments", :force => true do |t|
     t.string   "name"
