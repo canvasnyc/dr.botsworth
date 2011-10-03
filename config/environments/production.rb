@@ -15,7 +15,8 @@ DrBotsworth::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  # see: http://stackoverflow.com/questions/7275636/rails-3-1-0-actionviewtemplateerrror-application-css-isnt-precompiled
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
