@@ -1,8 +1,6 @@
 namespace :environments do
-  desc "Performs health checkups on each environment"
+  desc "Performs health checkup on each environment"
   task :checkup => :environment do
-
-    ip_relay = IPRelay::Downtime.new(Settings.ip_relay)
 
     Site.all.each do |site|
       puts "\nChecking health of site #{site.name}"
@@ -13,20 +11,8 @@ namespace :environments do
         checkup = Checkup.new
         checkup.environment = environment
         checkup.perform
-
         puts "#{checkup.healthy} #{"(#{checkup.error})" unless checkup.healthy?}"
-
-        unless checkup.healthy?
-          ip_relay.alert({
-            :url => environment.url,
-            :id => environment.id,
-            :site => site.name,
-            :commands => environment.ip_relay_commands,
-            :environment => environment.name,
-            :message => checkup.error
-           })
-        end
-
+        Alert.send(checkup)
       end
     end
 
