@@ -4,6 +4,9 @@ DrBotsworth::Application.routes.draw do
     resources :environments
   end
 
+  match '/log' => redirect("/log/#{Settings.log!.default!.lines}")
+  match '/log/:lines' => 'log#show'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -7,20 +7,20 @@ class Environment < ActiveRecord::Base
     :allow_nil => true
 
   def timeout
-    self[:timeout] || Settings.default!.timeout
+    self[:timeout] || Settings.environment!.default!.timeout
   end
 
   def retries
-    self[:retries] || Settings.default!.retries
+    self[:retries] || Settings.environment!.default!.retries
   end
 
   def between_retries_wait
-    self[:between_retries_wait] || Settings.default!.between_retries_wait
+    self[:between_retries_wait] || Settings.environment!.default!.between_retries_wait
   end
 
   def ip_relay_commands
     if self[:ip_relay_commands].empty?
-      Settings.default!.ip_relay_commands
+      Settings.environment!.default!.ip_relay_commands
     else
       self[:ip_relay_commands]
     end

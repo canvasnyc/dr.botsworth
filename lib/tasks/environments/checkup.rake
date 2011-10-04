@@ -2,6 +2,8 @@ namespace :environments do
   desc "Performs health checkup on each environment"
   task :checkup => :environment do
 
+    puts "\nStart: #{Time.now}"
+
     Site.all.each do |site|
       puts "\nChecking health of site #{site.name}"
 
