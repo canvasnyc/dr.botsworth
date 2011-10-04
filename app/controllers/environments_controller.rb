@@ -78,7 +78,7 @@ class EnvironmentsController < ApplicationController
   # DELETE /sites/1/environments/1
   # DELETE /sites/1/environments/1.json
   def destroy
-
+    @site = Site.find(params[:site_id])
     @environment = @site.environments.find(params[:id])
     @environment.destroy
 
