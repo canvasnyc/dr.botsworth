@@ -34,13 +34,29 @@ class Checkup < ActiveRecord::Base
     self.save
   end
 
+  def alert
+    unless self.healthy?
+      ip_relay.alert({
+        :url => self.environment.url,
+        :id => self.environment.id,
+        :site => self.environment.site.name,
+        :commands => self.environment.ip_relay_commands,
+        :environment => self.environment.name,
+        :message => self.error
+      })
+    end
+  end
+
  private
 
   def request(url, timeout)
-  Curl::Easy.perform(url) do |config|
-    config.timeout = timeout
+    Curl::Easy.perform(url) do |config|
+      config.timeout = timeout
+    end
   end
 
-end
+  def ip_relay
+    IPRelay::Downtime.new(Settings.ip_relay)
+  end
 
 end

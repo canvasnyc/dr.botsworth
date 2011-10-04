@@ -87,4 +87,21 @@ class EnvironmentsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  # GET /sites/1/environments/1/test_alert
+  def test_alert
+    @site = Site.find(params[:site_id])
+    @environment = @site.environments.find(params[:id])
+
+    result = @environment.test_alert
+
+    respond_to do |format|
+      unless result[:error]
+        format.html { redirect_to site_environment_path(@site, @environment), :notice => result[:message] }
+      else
+        format.html { redirect_to site_environment_path(@site, @environment), :alert => result[:message] }
+      end
+    end
+  end
+
 end

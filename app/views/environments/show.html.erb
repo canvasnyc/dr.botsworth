@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
 <p>
   <b>Name:</b>
@@ -26,8 +27,8 @@
 </p>
 
 <p>
-  <b>Ip relay commands:</b>
-  <%= @environment.ip_relay_commands %>
+  <b>Ip relay commands (<%= link_to 'test alert', "#{site_environment_path(@site, @environment)}/test_alert" %>):</b>
+  <%= @environment.ip_relay_commands %><br />
 </p>
 
 

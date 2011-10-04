@@ -14,7 +14,7 @@ namespace :environments do
         checkup.environment = environment
         checkup.perform
         puts "#{checkup.healthy} #{"(#{checkup.error})" unless checkup.healthy?}"
-        Alert.send(checkup)
+        checkup.alert
       end
     end
 

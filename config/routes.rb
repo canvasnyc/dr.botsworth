@@ -6,6 +6,8 @@ DrBotsworth::Application.routes.draw do
     resources :environments
   end
 
+  match '/sites/:site_id/environments/:id/test_alert' => 'environments#test_alert'
+
   match '/log' => redirect("/log/#{Settings.log!.default!.lines}")
   match '/log/:lines' => 'log#show'
 
