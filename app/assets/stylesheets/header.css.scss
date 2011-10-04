@@ -1,0 +1,14 @@
+header h1 {
+  display: inline-block;
+  font-size: 64px;
+  font-weight: normal;
+  font-family: 'Dancing Script', cursive;
+}
+
+#icon {
+  display: inline-block;
+  margin-left: 24px;
+  width: 128px;
+  height: 128px;
+  background-image: image-url('stethoscope.png')
+}
