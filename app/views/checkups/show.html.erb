@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Site:</b>
+  <%= @checkup.environment.site.name %>
+</p>
+
+<p>
+  <b>Environment:</b>
+  <%= @checkup.environment.name %>
+</p>
+
+<p>
+  <b>Healthy:</b>
+  <%= @checkup.healthy %>
+</p>
+
+<p>
+  <b>Name lookup time:</b>
+  <%= @checkup.name_lookup_time %>
+</p>
+
+<p>
+  <b>Start transfer time:</b>
+  <%= @checkup.start_transfer_time %>
+</p>
+
+<p>
+  <b>Total time:</b>
+  <%= @checkup.total_time %>
+</p>
+
+<p>
+  <b>Downloaded bytes:</b>
+  <%= @checkup.downloaded_bytes %>
+</p>
+
+<p>
+  <b>Retries used:</b>
+  <%= @checkup.retries_used %>
+</p>
+
+<p>
+  <b>Error:</b>
+  <%= @checkup.error %>
+</p>
+
+<p>
+  <b>Performed on:</b>
+  <%= @checkup.performed_on %>
+</p>
+
+<%= link_to 'Back', checkups_path %>

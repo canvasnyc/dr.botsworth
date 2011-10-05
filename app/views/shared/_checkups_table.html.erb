@@ -1,0 +1,33 @@
+<h2>Checkups</h2>
+
+<table>
+  <tr>
+    <th>Site</th>
+    <th>Healthy</th>
+    <th>Name lookup time</th>
+    <th>Start transfer time</th>
+    <th>Total time</th>
+    <th>Downloaded bytes</th>
+    <th>Retries used</th>
+    <th>Error</th>
+    <th>Performed on</th>
+    <th></th>
+  </tr>
+
+<p><%= paginate @checkups %></p>
+
+<% @checkups.each do |checkup| %>
+  <tr class='<%= checkup.healthy? ? 'healthy' : 'not-healthy' %>'>
+    <td><%= link_to "#{checkup.environment.site.name} #{checkup.environment.name}", site_environment_path(checkup.environment.site, checkup.environment) %></td>
+    <td><%= checkup.healthy %></td>
+    <td><%= checkup.name_lookup_time %></td>
+    <td><%= checkup.start_transfer_time %></td>
+    <td><%= checkup.total_time %></td>
+    <td><%= checkup.downloaded_bytes %></td>
+    <td><%= checkup.retries_used %></td>
+    <td><%= checkup.error %></td>
+    <td><%= checkup.performed_on %></td>
+    <td><%= link_to 'Show', checkup %></td>
+  </tr>
+<% end %>
+</table>

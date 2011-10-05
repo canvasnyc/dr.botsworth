@@ -1,0 +1,12 @@
+tr:first-child {
+  color: #fff;
+  background-color: #aaa;
+}
+
+tr:nth-of-type(even) {
+  background-color: #ddd;
+}
+
+tr.not-healthy {
+  background-color: #ffaaaa;
+}

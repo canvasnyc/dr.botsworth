@@ -1,5 +1,7 @@
 DrBotsworth::Application.routes.draw do
 
+  resources :checkups
+
   root :to => 'home#index'
 
   resources :sites do
