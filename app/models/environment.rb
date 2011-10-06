@@ -30,13 +30,12 @@ class Environment < ActiveRecord::Base
   # creates a fake site, environment, and checkup to test the iP Relay integration
   def test_alert
     checkup = Checkup.new
-    checkup.error = "test of downtime alert for #{self.site.name} #{self.name}"
 
     environment = Environment.new
     environment.ip_relay_commands = self.ip_relay_commands
     environment.url = 'http://www.example.com/'
-    environment.id = rand(999)
-    environment.name = 'test'
+    environment.id = rand(2**63)
+    environment.name = "(test alert for #{self.site.name} #{self.name})"
     checkup.environment = environment
 
     site = Site.new

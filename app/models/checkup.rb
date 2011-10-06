@@ -39,12 +39,14 @@ class Checkup < ActiveRecord::Base
   def alert
     unless self.healthy?
       ip_relay.alert({
-        :url => self.environment.url,
-        :id => self.environment.id,
+        :environment => {
+          :id => self.environment.id,
+          :name => self.environment.name,
+          :url => self.environment.url
+        },
         :site => self.environment.site.name,
         :commands => self.environment.ip_relay_commands,
-        :environment => self.environment.name,
-        :message => self.error
+        :url => "#{Settings.checkups!.url}#{self.id}"
       })
     end
   end
