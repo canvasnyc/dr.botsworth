@@ -1,11 +1,18 @@
-nav ul {
+header nav {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 8px;
+  margin-top: 42px;
+}
+
+header nav ul {
   padding-left: 0;
   padding-bottom: 24px;
 }
 
-nav li {
+header nav li {
   display: inline;
   list-style-type: none;
-  padding-right: 24px;
+  padding-left: 24px;
   font-size: 16px;
 }

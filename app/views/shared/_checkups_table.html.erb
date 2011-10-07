@@ -1,5 +1,7 @@
 <h2>Checkups</h2>
 
+<%= paginate @checkups %>
+
 <table>
   <tr>
     <th>Site</th>
@@ -13,8 +15,6 @@
     <th>Performed on</th>
     <th></th>
   </tr>
-
-<p><%= paginate @checkups %></p>
 
 <% @checkups.each do |checkup| %>
   <tr class='<%= checkup.healthy? ? 'healthy' : 'not-healthy' %>'>
