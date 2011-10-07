@@ -8,25 +8,28 @@
 }
 
 header {
-  width: 832px;
+  width: 848px;
   margin-left: auto;
   margin-right: auto;
+  border:1px solid #999;
+  box-shadow: 10px 10px 5px #999;
 }
 
 header h1 {
   display: inline-block;
   vertical-align: top;
+  margin-left: 16px;
   margin-top: 48px;
   font-size: 64px;
   font-weight: normal;
   font-family: 'Dancing Script', cursive;
 }
 
-#icon {
+header #icon {
   display: inline-block;
   vertical-align: top;
   margin-left: 32px;
   width: 128px;
-  height: 120px;
+  height: 128px;
   background-image: image-url('stethoscope.png')
 }
