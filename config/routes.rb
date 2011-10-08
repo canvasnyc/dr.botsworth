@@ -5,7 +5,9 @@ DrBotsworth::Application.routes.draw do
   root :to => 'home#index'
 
   resources :sites do
-    resources :environments
+    resources :environments do
+      resources :checkups
+    end
   end
 
   match '/sites/:site_id/environments/:id/test_alert' => 'environments#test_alert'

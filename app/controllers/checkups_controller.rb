@@ -2,8 +2,19 @@ class CheckupsController < ApplicationController
 
   # GET /checkups
   # GET /checkups.json
+  #
+  # or
+  #
+  # GET /sites/1/environments/1/checkups
+  # GET /sites/1/environments/1/checkups.json
+
   def index
-    @checkups = Checkup.order('created_at desc').page params[:page]
+    if params[:environment_id]
+      @environment = Environment.find(params[:environment_id])
+      @checkups = @environment.checkups.order('created_at desc').page params[:page]
+    else
+      @checkups = Checkup.order('created_at desc').page params[:page]
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +24,12 @@ class CheckupsController < ApplicationController
 
   # GET /checkups/1
   # GET /checkups/1.json
+  #
+  # or
+  #
+  # GET /sites/1/environments/1/checkups/1
+  # GET /sites/1/environments/1/checkups/1.json
+
   def show
     @checkup = Checkup.find(params[:id])
 

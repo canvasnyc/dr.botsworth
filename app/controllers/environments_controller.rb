@@ -16,7 +16,6 @@ class EnvironmentsController < ApplicationController
   def show
     @site = Site.find(params[:site_id])
     @environment = @site.environments.find(params[:id])
-    @checkups = @environment.checkups.order('created_at desc').page params[:page]
 
     respond_to do |format|
       format.html # show.html.erb

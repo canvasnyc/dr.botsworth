@@ -10,6 +10,7 @@
     <th>Ip relay commands</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @environments.each do |environment| %>
@@ -20,6 +21,7 @@
     <td><%= environment.retries %></td>
     <td><%= environment.between_retries_wait %></td>
     <td><%= environment.ip_relay_commands %></td>
+    <td><%= link_to 'Checkups', site_environment_checkups_path(@site, environment) %></td>
     <td><%= link_to edit_button, edit_site_environment_path(@site, environment) %></td>
     <td><%= link_to destroy_button, site_environment_path(@site, environment), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
