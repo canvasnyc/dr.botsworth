@@ -9,11 +9,14 @@ class CheckupsController < ApplicationController
   # GET /sites/1/environments/1/checkups.json
 
   def index
+    @filters = {}
+    @filters[:healthy] = params[:healthy] if params[:healthy].present?
+
     if params[:environment_id]
       @environment = Environment.find(params[:environment_id])
-      @checkups = @environment.checkups.order('created_at desc').page params[:page]
+      @checkups = @environment.checkups.where(@filters).order('created_at desc').page params[:page]
     else
-      @checkups = Checkup.order('created_at desc').page params[:page]
+      @checkups = Checkup.where(@filters).order('created_at desc').page params[:page]
     end
 
     respond_to do |format|
