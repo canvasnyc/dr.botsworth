@@ -7,10 +7,11 @@
   }
 }
 
-header {
-  width: 848px;
+
+header div.centered {
   margin-left: auto;
   margin-right: auto;
+  display: table;
   border:1px solid #999;
   box-shadow: 10px 10px 5px #999;
 }
@@ -18,7 +19,7 @@ header {
 header h1 {
   display: inline-block;
   vertical-align: top;
-  margin-left: 16px;
+  margin-left: 32px;
   margin-top: 48px;
   font-size: 64px;
   font-weight: normal;
@@ -28,8 +29,8 @@ header h1 {
 header #icon {
   display: inline-block;
   vertical-align: top;
-  margin-left: 32px;
   width: 128px;
   height: 128px;
+  margin-left: 32px;
   background-image: image-url('stethoscope.png')
 }
