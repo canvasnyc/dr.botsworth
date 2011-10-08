@@ -31,5 +31,6 @@
   <%= @environment.ip_relay_commands %><br />
 </p>
 
+<%= link_to 'Checkups', site_environment_checkups_path(@site, @environment) %> |
 <%= link_to 'Edit', edit_site_environment_path(@site, @environment) %> |
 <%= link_to 'Back', site_environments_path %>

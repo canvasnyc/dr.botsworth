@@ -1,7 +1,7 @@
 <h2>
   Checkups for
   <% if @environment %>
-    <%= link_to "#{@environment.name}", site_environment_path(@environment.site, @environment) %>
+    <%= link_to "#{@environment.site.name} #{@environment.name}", site_environment_path(@environment.site, @environment) %>
   <% else %>
     all environments
   <% end %>
@@ -11,7 +11,8 @@
 
 <table>
   <tr>
-    <th>Site and environment</th>
+    <th>Site</th>
+    <th>Environment</th>
     <th>Healthy</th>
     <th>Name lookup time</th>
     <th>Start transfer time</th>
@@ -20,11 +21,13 @@
     <th>Retries used</th>
     <th>Error</th>
     <th>Performed on</th>
+    <th></th>
   </tr>
 
 <% @checkups.each do |checkup| %>
   <tr class='<%= checkup.healthy? ? 'healthy' : 'not-healthy' %>'>
-    <td><%= link_to "#{checkup.environment.site.name} #{checkup.environment.name}", checkup %></td>
+    <td><%= checkup.environment.site.name %></td>
+    <td><%= checkup.environment.name %></td>
     <td><%= checkup.healthy %></td>
     <td><%= checkup.name_lookup_time %></td>
     <td><%= checkup.start_transfer_time %></td>
@@ -33,6 +36,7 @@
     <td><%= checkup.retries_used %></td>
     <td><%= checkup.error %></td>
     <td><%= checkup.performed_on %></td>
+    <td><%= link_to 'Show', checkup %></td>
   </tr>
 <% end %>
 </table>
