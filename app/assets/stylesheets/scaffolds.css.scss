@@ -23,6 +23,15 @@ a {
     color: #fff;
     background-color: #000; } }
 
+a span.button {
+  display: block;
+  height: 32px;
+  width: 32px;
+  &.edit {background-image: image-url('edit.png')}
+  &.destroy {background-image: image-url('destroy.png')}
+  &.new {background-image: image-url('new.png')}
+}
+
 div {
   &.field, &.actions {
     margin-bottom: 10px; } }
