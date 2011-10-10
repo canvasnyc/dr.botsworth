@@ -50,4 +50,8 @@
   <%= @checkup.performed_on %>
 </p>
 
-<%= link_to 'Back', checkups_path %>
+<% if @environment %>
+  <%= link_to 'Back', site_environment_checkups_path(@site, @environment) %>
+<% else %>
+  <%= link_to 'Back', checkups_path %>
+<% end %>

@@ -9,15 +9,21 @@ class CheckupsController < ApplicationController
   # GET /sites/1/environments/1/checkups.json
 
   def index
-    @filters = {}
-    @filters[:healthy] = params[:healthy] if params[:healthy].present?
+    @filters = params[:filters] || {}
+    @filters.delete_if { |k, v| v.empty? }
 
     if params[:environment_id]
       @environment = Environment.find(params[:environment_id])
+      @site = @environment.site
       @checkups = @environment.checkups.where(@filters).order('created_at desc').page params[:page]
     else
       @checkups = Checkup.where(@filters).order('created_at desc').page params[:page]
     end
+
+    @filter_options = {
+      :healthy => [[nil, nil], [false, 0], [true, 1]],
+      :retries_used => 0..5
+    }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -34,7 +40,13 @@ class CheckupsController < ApplicationController
   # GET /sites/1/environments/1/checkups/1.json
 
   def show
-    @checkup = Checkup.find(params[:id])
+    if params[:environment_id]
+      @environment = Environment.find(params[:environment_id])
+      @site = @environment.site
+      @checkup = @environment.checkups.find(params[:id])
+    else
+      @checkup = Checkup.find(params[:id])
+    end
 
     respond_to do |format|
       format.html # show.html.erb
