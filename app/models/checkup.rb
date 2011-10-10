@@ -1,8 +1,6 @@
 class Checkup < ActiveRecord::Base
   belongs_to :environment
 
-  Time.zone = Settings.time_zone
-
   def perform
     throw 'Missing `environment_id` association' unless environment_id
     retries = environment.retries
