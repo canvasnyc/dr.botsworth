@@ -10,6 +10,7 @@ class CheckupsController < ApplicationController
 
   def index
     @filters = params[:filters] || {}
+    # Don't bother filtering if a value isn't provided to filter by.
     @filters.delete_if { |k, v| v.empty? }
 
     if params[:environment_id]
