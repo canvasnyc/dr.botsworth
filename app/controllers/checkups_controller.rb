@@ -22,7 +22,7 @@ class CheckupsController < ApplicationController
 
     @filter_options = {
       :healthy => [[nil, nil], [false, 0], [true, 1]],
-      :retries_used => 0..5
+      :retries_used => (0..5)
     }
 
     respond_to do |format|
