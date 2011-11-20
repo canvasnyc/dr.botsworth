@@ -60,8 +60,9 @@ class Checkup < ActiveRecord::Base
     end
   end
 
+  # Alias for created_at
   def performed_on
-    self.created_at.strftime('%b %e, %Y %l:%M %P')
+    self.created_at
   end
 
  private
