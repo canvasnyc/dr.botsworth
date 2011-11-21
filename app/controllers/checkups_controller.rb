@@ -71,6 +71,9 @@ class CheckupsController < ApplicationController
     @retries_used =
       charts.where(:series => 'retries_used_sum').first
 
+    @downloaded_bytes =
+      charts.where(:series => 'average_downloaded_bytes').first
+
     @point_interval = 1.day * 1000
     @point_start = charts.first.starts_at.to_i * 1000
 

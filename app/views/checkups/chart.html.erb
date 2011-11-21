@@ -14,6 +14,11 @@
         title: { text: 'count' },
         min: 0,
         opposite: true
+      },
+      {
+        title: { text: 'bytes' },
+        min: 0,
+        opposite: true
       }],
       series: [{
         name: 'Name Lookup Time',
@@ -49,6 +54,13 @@
         pointStart: <%= @point_start %>,
         data: <%= @retries_used.data.html_safe %>,
         yAxis: 1
+      },
+      {
+        name: 'Downloaded Bytes',
+        pointInterval: <%= @point_interval %>,
+        pointStart: <%= @point_start %>,
+        data: <%= @downloaded_bytes.data.html_safe %>,
+        yAxis: 2
       }]
     });
   });

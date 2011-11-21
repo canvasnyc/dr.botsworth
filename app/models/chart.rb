@@ -7,6 +7,7 @@ class Chart < ActiveRecord::Base
               :average_name_lookup_time,
               :average_start_transfer_time,
               :average_total_time,
+              :average_downloaded_bytes,
               :retries_used_sum]
     starts_at = days.days.ago.at_midnight
     ends_at = 0.days.ago.at_midnight - 1
@@ -19,6 +20,7 @@ class Chart < ActiveRecord::Base
         CAST(AVG(`name_lookup_time`) * 1000 AS UNSIGNED) AS `average_name_lookup_time`,
         CAST(AVG(`start_transfer_time`) * 1000 AS UNSIGNED) AS `average_start_transfer_time`,
         CAST(AVG(`total_time`) * 1000 AS UNSIGNED) AS `average_total_time`,
+        CAST(AVG(`downloaded_bytes`) AS UNSIGNED) AS `average_downloaded_bytes`,
         CAST(SUM(`retries_used`) AS UNSIGNED) AS `retries_used_sum`'
       ).where(:created_at => starts_at..ends_at, :environment_id => environment_id).first
     end.reverse
