@@ -3,8 +3,12 @@
 <script>
   $(function () {
     new Highcharts.Chart({
-      chart: { renderTo: 'checkups_chart' },
-      title: { text: 'Checkups' },
+      chart: { 
+        renderTo: 'checkups_chart',
+        height: 640
+      },
+      title: { text: '<%= "Checkups for #{@site.name} #{@environment.name}" %>' },
+      subtitle: { text: '<%= "#{l @starts_at} through #{l @ends_at}" %>' },
       xAxis: { type: 'datetime' },
       yAxis: [{
         title: { text: 'milliseconds' },
@@ -24,42 +28,42 @@
         name: 'Name Lookup Time',
         pointInterval: <%= @point_interval %>,
         pointStart: <%= @point_start %>,
-        data: <%= @name_lookup_time.data.html_safe %>,
+        data: <%= @charts[:name_lookup_time].data.html_safe %>,
         yAxis: 0
       },
       {
         name: 'Start Transfer Time',
         pointInterval: <%= @point_interval %>,
         pointStart: <%= @point_start %>,
-        data: <%= @start_transfer_time.data.html_safe %>,
+        data: <%= @charts[:start_transfer_time].data.html_safe %>,
         yAxis: 0
       },
       {
         name: 'Total Time',
         pointInterval: <%= @point_interval %>,
         pointStart: <%= @point_start %>,
-        data: <%= @total_time.data.html_safe %>,
+        data: <%= @charts[:total_time].data.html_safe %>,
         yAxis: 0
       },
       {
         name: 'Unhealthy Checkups',
         pointInterval: <%= @point_interval %>,
         pointStart: <%= @point_start %>,
-        data: <%= @unhealthy_checkups.data.html_safe %>,
+        data: <%= @charts[:unhealthy_checkups].data.html_safe %>,
         yAxis: 1
       },
       {
         name: 'Retries Used',
         pointInterval: <%= @point_interval %>,
         pointStart: <%= @point_start %>,
-        data: <%= @retries_used.data.html_safe %>,
+        data: <%= @charts[:retries_used].data.html_safe %>,
         yAxis: 1
       },
       {
         name: 'Downloaded Bytes',
         pointInterval: <%= @point_interval %>,
         pointStart: <%= @point_start %>,
-        data: <%= @downloaded_bytes.data.html_safe %>,
+        data: <%= @charts[:downloaded_bytes].data.html_safe %>,
         yAxis: 2
       }]
     });

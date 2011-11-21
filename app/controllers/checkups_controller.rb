@@ -56,26 +56,30 @@ class CheckupsController < ApplicationController
   end
 
   def chart
-    environment = Environment.find(params[:environment_id])
-    charts = environment.charts
+    @environment = Environment.find(params[:environment_id])
+    @site = @environment.site
+    charts = @environment.charts
 
-    @name_lookup_time =
-      charts.where(:series => 'average_name_lookup_time').first
-    @start_transfer_time =
-      charts.where(:series => 'average_start_transfer_time').first
-    @total_time =
-      charts.where(:series => 'average_total_time').first
-
-    @unhealthy_checkups =
-      charts.where(:series => 'unhealthy_checkups_sum').first
-    @retries_used =
-      charts.where(:series => 'retries_used_sum').first
-
-    @downloaded_bytes =
-      charts.where(:series => 'average_downloaded_bytes').first
-
+    @starts_at = charts.first.starts_at
+    @ends_at = charts.first.ends_at    
     @point_interval = 1.day * 1000
-    @point_start = charts.first.starts_at.to_i * 1000
+    @point_start = @starts_at.to_i * 1000
+
+
+    @charts = {
+      :name_lookup_time =>
+        charts.where(:series => 'average_name_lookup_time').first,
+      :start_transfer_time =>
+        charts.where(:series => 'average_start_transfer_time').first,
+      :total_time =>
+        charts.where(:series => 'average_total_time').first,
+      :unhealthy_checkups =>
+        charts.where(:series => 'unhealthy_checkups_sum').first,
+      :retries_used =>
+        charts.where(:series => 'retries_used_sum').first,
+      :downloaded_bytes =>
+        charts.where(:series => 'average_downloaded_bytes').first
+    }
 
   end
 
