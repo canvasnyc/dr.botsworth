@@ -55,4 +55,36 @@ class CheckupsController < ApplicationController
     end
   end
 
+  def chart
+    @days = 30
+
+    @environment = Environment.find(params[:environment_id])
+    @checkups = @environment.checkups
+
+    bins = self.bins
+
+    @unhealthy_checkups = bins.map { |bin| bin[:unhealthy_checkups_sum] }
+    @name_lookup_time = bins.map { |bin| bin[:average_name_lookup_time] }
+    @start_transfer_time = bins.map { |bin| bin[:average_start_transfer_time] }
+    @total_time = bins.map { |bin| bin[:average_total_time] }
+    @retries_used = bins.map { |bin| bin[:retries_used_sum] }
+
+  end
+
+protected
+
+  def bins
+    (1..@days).collect do |day|
+      min = day.days.ago
+      max = (day - 1).days.ago
+      @checkups.select(
+        'SUM(CASE WHEN `healthy`= 0 THEN 1 ELSE 0 END) AS `unhealthy_checkups_sum`,
+        CAST(AVG(`name_lookup_time`) * 1000 AS UNSIGNED) AS `average_name_lookup_time`,
+        CAST(AVG(`start_transfer_time`) * 1000 AS UNSIGNED) AS `average_start_transfer_time`,
+        CAST(AVG(`total_time`) * 1000 AS UNSIGNED) AS `average_total_time`,
+        SUM(`retries_used`) AS `retries_used_sum`'
+        ).where(:created_at => min..max).first
+    end.reverse
+  end
+
 end

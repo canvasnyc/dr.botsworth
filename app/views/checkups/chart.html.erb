@@ -1,0 +1,33 @@
+<div id="checkups_chart"></div>
+
+<script>
+  $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'checkups_chart' },
+      title: { text: 'Checkups' },
+      xAxis: { type: 'datetime' },
+      yAxis: {
+        title: { text: 'milliseconds' },
+        min: 0
+      },
+      series: [{
+        name: 'Name Lookup Time',
+        pointInterval: <%= 1.day * 1000 %>,
+        pointStart: <%= @days.days.ago.to_i * 1000 %>,
+        data: <%= @name_lookup_time.to_json.html_safe %>
+      },
+      {
+        name: 'Start Transfer Time',
+        pointInterval: <%= 1.day * 1000 %>,
+        pointStart: <%= @days.days.ago.to_i * 1000 %>,
+        data: <%= @start_transfer_time.to_json.html_safe %>
+      },
+      {
+        name: 'Total Time',
+        pointInterval: <%= 1.day * 1000 %>,
+        pointStart: <%= @days.days.ago.to_i * 1000 %>,
+        data: <%= @total_time.to_json.html_safe %>
+      }]
+    });
+  });
+</script>

@@ -2,6 +2,8 @@ DrBotsworth::Application.routes.draw do
 
   root :to => 'home#index'
 
+  match '/sites/:site_id/environments/:environment_id/checkups/chart' => 'checkups#chart'
+
   resources :sites do
     resources :environments do
       resources :checkups
