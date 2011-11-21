@@ -12,7 +12,7 @@ DrBotsworth::Application.routes.draw do
 
   match '/sites/:site_id/environments/:id/test_alert' => 'environments#test_alert'
 
-  match '/log' => redirect("/log/#{Settings.log!.default!.lines}")
+  match '/log' => redirect("/log/#{Settings.log[:default][:lines]}")
   match '/log/:lines' => 'log#show'
 
   # The priority is based upon order of creation:
