@@ -1,6 +1,7 @@
 class Environment < ActiveRecord::Base
   belongs_to :site
   has_many :checkups, :dependent => :destroy
+  has_many :charts, :dependent => :destroy
   validates :name, :url, :site_id, :presence => true
   validates :url, :url => true
   validates :timeout, :retries, :between_retries_wait,

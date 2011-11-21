@@ -6,27 +6,49 @@
       chart: { renderTo: 'checkups_chart' },
       title: { text: 'Checkups' },
       xAxis: { type: 'datetime' },
-      yAxis: {
+      yAxis: [{
         title: { text: 'milliseconds' },
         min: 0
       },
+      {
+        title: { text: 'count' },
+        min: 0,
+        opposite: true
+      }],
       series: [{
         name: 'Name Lookup Time',
-        pointInterval: <%= 1.day * 1000 %>,
-        pointStart: <%= @days.days.ago.to_i * 1000 %>,
-        data: <%= @name_lookup_time.to_json.html_safe %>
+        pointInterval: <%= @point_interval %>,
+        pointStart: <%= @point_start %>,
+        data: <%= @name_lookup_time.data.html_safe %>,
+        yAxis: 0
       },
       {
         name: 'Start Transfer Time',
-        pointInterval: <%= 1.day * 1000 %>,
-        pointStart: <%= @days.days.ago.to_i * 1000 %>,
-        data: <%= @start_transfer_time.to_json.html_safe %>
+        pointInterval: <%= @point_interval %>,
+        pointStart: <%= @point_start %>,
+        data: <%= @start_transfer_time.data.html_safe %>,
+        yAxis: 0
       },
       {
         name: 'Total Time',
-        pointInterval: <%= 1.day * 1000 %>,
-        pointStart: <%= @days.days.ago.to_i * 1000 %>,
-        data: <%= @total_time.to_json.html_safe %>
+        pointInterval: <%= @point_interval %>,
+        pointStart: <%= @point_start %>,
+        data: <%= @total_time.data.html_safe %>,
+        yAxis: 0
+      },
+      {
+        name: 'Unhealthy Checkups',
+        pointInterval: <%= @point_interval %>,
+        pointStart: <%= @point_start %>,
+        data: <%= @unhealthy_checkups.data.html_safe %>,
+        yAxis: 1
+      },
+      {
+        name: 'Retries Used',
+        pointInterval: <%= @point_interval %>,
+        pointStart: <%= @point_start %>,
+        data: <%= @retries_used.data.html_safe %>,
+        yAxis: 1
       }]
     });
   });
