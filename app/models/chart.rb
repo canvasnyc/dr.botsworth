@@ -13,8 +13,8 @@ class Chart < ActiveRecord::Base
     ends_at = 0.days.ago.at_midnight - 1
 
     bins = (1..days).collect do |day|
-      starts_at = day.days.ago.at_midnight
-      ends_at = (day - 1).days.ago.at_midnight - 1
+      bin_starts_at = day.days.ago.at_midnight
+      bin_ends_at = (day - 1).days.ago.at_midnight - 1
       Checkup.select(
         'CAST(SUM(CASE WHEN `healthy`= 0 THEN 1 ELSE 0 END) AS UNSIGNED) AS `unhealthy_checkups_sum`,
         CAST(AVG(`name_lookup_time`) * 1000 AS UNSIGNED) AS `average_name_lookup_time`,
@@ -22,7 +22,7 @@ class Chart < ActiveRecord::Base
         CAST(AVG(`total_time`) * 1000 AS UNSIGNED) AS `average_total_time`,
         CAST(AVG(`downloaded_bytes`) AS UNSIGNED) AS `average_downloaded_bytes`,
         CAST(SUM(`retries_used`) AS UNSIGNED) AS `retries_used_sum`'
-      ).where(:created_at => starts_at..ends_at, :environment_id => environment_id).first
+      ).where(:created_at => bin_starts_at..bin_ends_at, :environment_id => environment_id).first
     end.reverse
 
     Chart.where(:environment_id => environment_id).destroy_all
