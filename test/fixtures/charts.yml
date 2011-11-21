@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  environment: 
+  starts_at: 2011-11-21 08:44:26
+  ends_at: 2011-11-21 08:44:26
+  series: MyString
+  data: MyText
+
+two:
+  environment: 
+  starts_at: 2011-11-21 08:44:26
+  ends_at: 2011-11-21 08:44:26
+  series: MyString
+  data: MyText

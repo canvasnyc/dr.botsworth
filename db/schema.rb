@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002162100) do
+ActiveRecord::Schema.define(:version => 20111121134426) do
+
+  create_table "charts", :force => true do |t|
+    t.integer  "environment_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.string   "series"
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "charts", ["environment_id"], :name => "index_charts_on_environment_id"
 
   create_table "checkups", :force => true do |t|
     t.boolean  "healthy",             :default => false
