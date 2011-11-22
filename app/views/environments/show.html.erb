@@ -27,7 +27,7 @@
 </p>
 
 <p>
-  <b>Ip relay commands</b> (<%= link_to 'test alert', "#{site_environment_path(@site, @environment)}/test_alert" %>):
+  <b>Ip relay commands</b> (<%= link_to 'test alert', :action => :test_alert %>):
   <%= @environment.ip_relay_commands %><br />
 </p>
 
