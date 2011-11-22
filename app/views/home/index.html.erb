@@ -1,5 +1,33 @@
-<h2>Welcome</h2>
+<div id='chart'></div>
 
-<p>
-  Welcome to Dr. Botsworth, a dead-simple site health checking system.
-</p>
+<script type="text/javascript">
+  $(function () {
+    new Highcharts.Chart({
+      chart: { 
+        renderTo: 'chart',
+        height: 512
+      },
+      title: { text: 'Unhealthy Checkups' },
+      subtitle: { text: '<%= @subtitle %>' },
+      xAxis: { type: 'datetime' },
+      yAxis: {
+        title: { text: 'count' },
+        min: 0
+      },
+      plotOptions: {
+        line: {
+          pointStart: <%= @point_start %>,
+          pointInterval: <%= @point_interval %>
+        }
+      },
+      series: [
+        <% @charts.each do |chart| %>
+        {
+          name: '<%= chart[:name] %>',
+          data: <%= chart[:data].html_safe %>
+        },
+        <% end %>
+      ]
+    });
+  });
+</script>
