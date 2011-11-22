@@ -1,14 +1,14 @@
-<div id="checkups_chart"></div>
+<div id='chart'></div>
 
-<script>
+<script type="text/javascript">
   $(function () {
     new Highcharts.Chart({
       chart: { 
-        renderTo: 'checkups_chart',
+        renderTo: 'chart',
         height: 640
       },
-      title: { text: '<%= "Checkups for #{@site.name} #{@environment.name}" %>' },
-      subtitle: { text: '<%= "#{l @starts_at} through #{l @ends_at}" %>' },
+      title: { text: '<%= @title %>' },
+      subtitle: { text: '<%= @subtitle %>' },
       xAxis: { type: 'datetime' },
       yAxis: [{
         title: { text: 'milliseconds' },
@@ -24,45 +24,39 @@
         min: 0,
         opposite: true
       }],
+      plotOptions: {
+        line: {
+          pointStart: <%= @point_start %>,
+          pointInterval: <%= @point_interval %>
+        }
+      },
       series: [{
         name: 'Name Lookup Time',
-        pointInterval: <%= @point_interval %>,
-        pointStart: <%= @point_start %>,
         data: <%= @charts[:name_lookup_time].data.html_safe %>,
         yAxis: 0
       },
       {
         name: 'Start Transfer Time',
-        pointInterval: <%= @point_interval %>,
-        pointStart: <%= @point_start %>,
         data: <%= @charts[:start_transfer_time].data.html_safe %>,
         yAxis: 0
       },
       {
         name: 'Total Time',
-        pointInterval: <%= @point_interval %>,
-        pointStart: <%= @point_start %>,
         data: <%= @charts[:total_time].data.html_safe %>,
         yAxis: 0
       },
       {
         name: 'Unhealthy Checkups',
-        pointInterval: <%= @point_interval %>,
-        pointStart: <%= @point_start %>,
         data: <%= @charts[:unhealthy_checkups].data.html_safe %>,
         yAxis: 1
       },
       {
         name: 'Retries Used',
-        pointInterval: <%= @point_interval %>,
-        pointStart: <%= @point_start %>,
         data: <%= @charts[:retries_used].data.html_safe %>,
         yAxis: 1
       },
       {
         name: 'Downloaded Bytes',
-        pointInterval: <%= @point_interval %>,
-        pointStart: <%= @point_start %>,
         data: <%= @charts[:downloaded_bytes].data.html_safe %>,
         yAxis: 2
       }]

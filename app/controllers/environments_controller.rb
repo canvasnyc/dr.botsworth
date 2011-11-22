@@ -114,7 +114,8 @@ class EnvironmentsController < ApplicationController
     @ends_at = charts.first.ends_at    
     @point_interval = 1.day * 1000
     @point_start = @starts_at.to_i * 1000
-
+    @title = "Checkups for #{@site.name} #{@environment.name}"
+    @subtitle = "#{l @starts_at} through #{l @ends_at}"
 
     @charts = {
       :name_lookup_time =>
