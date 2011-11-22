@@ -2,7 +2,7 @@ DrBotsworth::Application.routes.draw do
 
   root :to => 'home#index'
 
-  match '/sites/:site_id/environments/:environment_id/checkups/chart' => 'checkups#chart'
+  
 
   resources :sites do
     resources :environments do
@@ -12,6 +12,7 @@ DrBotsworth::Application.routes.draw do
 
   resources :checkups
 
+  match '/sites/:site_id/environments/:id/chart' => 'environments#chart'
   match '/sites/:site_id/environments/:id/test_alert' => 'environments#test_alert'
 
   match '/log' => redirect("/log/#{Settings.log[:default][:lines]}")
