@@ -8,6 +8,7 @@
     <th>Retries</th>
     <th>Between retries wait</th>
     <th>Ip relay commands</th>
+    <th>Enabled</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,6 +22,7 @@
     <td><%= environment.retries %></td>
     <td><%= environment.between_retries_wait %></td>
     <td><%= environment.ip_relay_commands %></td>
+    <td><%= environment.enabled %></td>
     <td><%= link_to 'Chart', :action => :chart, :id => environment.id %></td>
     <td><%= link_to 'Checkups', site_environment_checkups_path(@site, environment) %></td>
     <td><%= link_to edit_button, edit_site_environment_path(@site, environment) %></td>

@@ -8,7 +8,7 @@ namespace :environments do
       puts "\nChecking health of site #{site.name}"
 
       # Iterate through each environment associated with this site
-      site.environments.all.each do |environment|
+      site.environments.where(:enabled => true).each do |environment|
         print "Is #{environment.name} environment healthy? "
         # Cause the console output to refresh in case someone is watching this
         # live.

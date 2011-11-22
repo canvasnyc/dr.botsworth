@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121134426) do
+ActiveRecord::Schema.define(:version => 20111122171614) do
 
   create_table "charts", :force => true do |t|
     t.integer  "environment_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20111121134426) do
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "enabled",              :default => true
   end
 
   add_index "environments", ["site_id"], :name => "index_environments_on_site_id"
