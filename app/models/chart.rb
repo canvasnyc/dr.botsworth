@@ -1,7 +1,7 @@
 class Chart < ActiveRecord::Base
   belongs_to :environment
 
-  def self.cache!(environment_id, days = 30)
+  def self.cache(environment_id, days = 30)
 
     series = [:unhealthy_checkups_sum,
               :average_name_lookup_time,
