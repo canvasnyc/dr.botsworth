@@ -22,3 +22,11 @@
 every 5.minutes do
   rake "environments:checkup", :output => 'log/checkup.log'
 end
+
+every 1.day, :at => '12:00 am' do 
+  rake "charts:cache", :output => 'log/cache.log'
+end
+
+every :month do 
+  rake "checkups:purge", :output => 'log/purge.log'
+end
