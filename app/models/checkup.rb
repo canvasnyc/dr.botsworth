@@ -47,16 +47,20 @@ class Checkup < ActiveRecord::Base
   # Unless the checkup result was healthy, send a downtime alert via iP Relay.
   def alert
     unless self.healthy?
-      ip_relay.alert({
-        :environment => {
-          :id => self.environment.id,
-          :name => self.environment.name,
-          :url => self.environment.url
-        },
-        :site => self.environment.site.name,
-        :commands => self.environment.ip_relay_commands,
-        :url => "#{Settings.checkups[:url]}#{self.id}"
-      })
+      # Do not send the alert when there are name resolution problems. Most of
+      # the time, this is simply due to the DNS server being unavailable.
+      unless self.error =~ /Couldn't resolve host name/i
+        ip_relay.alert({
+          :environment => {
+            :id => self.environment.id,
+            :name => self.environment.name,
+            :url => self.environment.url
+          },
+          :site => self.environment.site.name,
+          :commands => self.environment.ip_relay_commands,
+          :url => "#{Settings.checkups[:url]}#{self.id}"
+        })
+      end
     end
   end
 
